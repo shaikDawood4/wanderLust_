@@ -91,6 +91,11 @@ app.use(passport.initialize()); // shuru karo
 app.use(passport.session()); // session use karo 
 passport.use(new LocalStrategy(User.authenticate()))   //localstrategy use karo and user ku authenticate karo using authenticate method
 
+app.use((req, res, next) => {
+  res.locals.currUser = req.user;
+  next();
+});
+
 passport.serializeUser(User.serializeUser()); //user ka session save karna
 passport.deserializeUser(User.deserializeUser()); //user ka session ko unsave karna
 

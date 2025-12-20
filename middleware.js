@@ -7,7 +7,7 @@ const Review = require("./models/review.js")
 module.exports.isLoggedIn = (req, res, next) => {
     console.log(req)
     if (!req.isAuthenticated()) {
-        req.session.redirectUrl = req.originalUrl;
+        req.session.redirectUrl = req.originalUrl; // made variable
         req.flash("error", "you must login to create new listing")
         return res.redirect("/login")
     }
@@ -31,7 +31,7 @@ module.exports.isOwner = async(req,res,next)=>{
     req.flash("error","you are not the owner of this listing")
      return res.redirect(`/listings/${id}`);
    }
-   next()
+   next() // else continue next
 }
 
 
