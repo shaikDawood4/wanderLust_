@@ -126,6 +126,7 @@ app.use((req,res,next)=>{
     res.locals.success = req.flash("success") // locals temp storage area me we are creating new var success which stores the flash key which has name "success"
     res.locals.error = req.flash("error")
     res.locals.currUser = req.user;
+        res.locals.isAuthenticated = req.isAuthenticated();
     next() // dont forget to call next 
 })
 
