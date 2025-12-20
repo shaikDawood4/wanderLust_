@@ -40,12 +40,12 @@
 
           <div class="navbar-nav ms-auto pb-4">
              <a class="nav-link" href="/listings/new">Add new listing</a>
-            <% if(!currUser) {%>
+           <% if(!isAuthenticated) { %>
           <a class="nav-link"  href="/signup"><b>Sign Up</b></a>  
          <a class="nav-link" href="/login"> <b>Login</b> </a> 
           <% } %>
 
-           <%if(currUser) { %>
+           <% if(isAuthenticated) { %>
           <a class="nav-link " href="/logout"><b> log out</b></a>
           <a class="pt-2 ml-2 delbtn"  style="text-decoration: none;" href="/listings/<%=currUser._id%>">delete Account</a>
            <% } %>
