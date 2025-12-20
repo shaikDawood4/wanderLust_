@@ -91,16 +91,15 @@ app.use(passport.initialize()); // shuru karo
 app.use(passport.session()); // session use karo 
 passport.use(new LocalStrategy(User.authenticate()))   //localstrategy use karo and user ku authenticate karo using authenticate method
 
-app.use((req, res, next) => {
-  res.locals.currUser = req.user;
-  next();
-});
+
 
 passport.serializeUser(User.serializeUser()); //user ka session save karna
 passport.deserializeUser(User.deserializeUser()); //user ka session ko unsave karna
 
-
-
+app.use((req,res,next)=>{
+ res.locals.isAuthenticated = req.isAuthenticated();
+  next() // dont forget to call next 
+})
 
 // app.get("/testlisting",async (req,res)=>{
 //     let sampleListing = new Listing({ // ye karte hi new db create hojata, jaake mongoshell me dekh aayega !
@@ -126,7 +125,7 @@ app.use((req,res,next)=>{
     res.locals.success = req.flash("success") // locals temp storage area me we are creating new var success which stores the flash key which has name "success"
     res.locals.error = req.flash("error")
     res.locals.currUser = req.user;
-        res.locals.isAuthenticated = req.isAuthenticated();
+       
     next() // dont forget to call next 
 })
 
