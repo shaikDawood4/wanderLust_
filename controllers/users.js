@@ -49,7 +49,7 @@ module.exports.logout = (req,res,next)=>{
 
             
         }
-        req.flash("error", "you must login/sign up first to login out ")
+        
            return res.redirect("/listings") // error aaya tho next ko call karo
     }) //logout apne aap me call back lega, aur ye callback is to implement immediate action after logging out user
 }
