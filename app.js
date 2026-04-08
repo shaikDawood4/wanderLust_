@@ -29,23 +29,27 @@ const passport = require("passport")
 const LocalStrategy = require("passport-local")
 const User = require("./models/user.js")
 
+
+
+
 const listingsRouter = require("./routes/listing.js") //  restructuring for ease of use
 const reviewsRouter = require("./routes/review.js") // restructuring for ease of use
 const userRouter = require("./routes/user.js") // '' '' 
 
 
 
-main() .then(()=>console.log("connected to db"))
-       .catch((err)=>{console.log(err)});
+main() 
+.then(()=>console.log("connected to db"))
+.catch((err)=>{console.log(err)});
 
-
-async function main() {
-    await mongoose.connect(dbUrl);
+       async function main() {
+       await mongoose.connect(dbUrl);
     
 }
 
 app.set("view engine","ejs"); //setting view engine to allow templating
 app.set("views",path.join(__dirname,"views")); // ye wale path se view ko loo
+
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride("_method"));
 app.engine("ejs",ejsMate); 
@@ -70,7 +74,7 @@ store.on("error",(err)=>{
 
 
 
-const sessionOptions = {
+const sessionOptions = {  //1
     store,
     secret : process.env.SECRET,
     resave : false,
@@ -84,7 +88,7 @@ const sessionOptions = {
 
 
 
-app.use(session(sessionOptions))
+app.use(session(sessionOptions)) // 2
 app.use(flash()) // sessions ke neeche hi rehna, and also jo routes ku handle karre na restructuring karke usse phele hi aana ye cheeze
 
 app.use(passport.initialize()); // shuru karo 
