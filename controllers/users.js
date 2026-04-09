@@ -41,19 +41,19 @@ module.exports.login = async(req,res)=>{  // p.a humara ek middleware hai, joh h
 
 
 
-module.exports.logout = (req,res,next)=>{
-    req.logOut((err)=>{
-        if(req.isAuthenticated()){
-            req.flash("success", "you are logged out now!")
-         res.redirect("/listings")
-
-            
+module.exports.logout = (req, res, next) => {
+    req.logOut((err) => {
+        if (err) {
+            return next(err);
         }
-        
-           return res.redirect("/listings") // error aaya tho next ko call karo
-    }) //logout apne aap me call back lega, aur ye callback is to implement immediate action after logging out user
-}
+        req.flash("success", "You are logged out now!");
+        res.redirect("/listings");
+    });
+};
 
+module.exports.delUser = (req,res)=>{
+     
+}
 module.exports.delUser = (req,res)=>{
      
 }
